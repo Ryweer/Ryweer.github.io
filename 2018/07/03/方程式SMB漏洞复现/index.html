@@ -7,12 +7,12 @@
   
   <title>方程式SMB漏洞复现 | Ryweer&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="利用条件，目标系统window10以下，开启了文件共享。实验环境如下： 1、 攻击机，windows10，64位，IP地址 192.168.46.1 2、 监听机，ubuntu，64位，IP地址 192.168.46.139 3、 靶机，win7sp3，32位，IP 192.168.46.129 在复现之前首先要对fb.py文件进行一些修改，将27，28，29，72行代码注释掉。   首先在攻击机">
+  <meta name="description" content="利用条件，目标系统window10以下，开启了文件共享。实验环境如下： 1、 攻击机，windows10，64位，IP地址 192.168.46.1 2、 监听机，ubuntu，64位，IP地址 192.168.46.139 3、 靶机，win7sp3，32位，IP 192.168.46.129 在复现之前首先要对fb.py文件进行一些修改，将27，28，29，72行代码注释掉。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="方程式SMB漏洞复现">
 <meta property="og:url" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/index.html">
 <meta property="og:site_name" content="Ryweer&#39;s Blog">
-<meta property="og:description" content="利用条件，目标系统window10以下，开启了文件共享。实验环境如下： 1、 攻击机，windows10，64位，IP地址 192.168.46.1 2、 监听机，ubuntu，64位，IP地址 192.168.46.139 3、 靶机，win7sp3，32位，IP 192.168.46.129 在复现之前首先要对fb.py文件进行一些修改，将27，28，29，72行代码注释掉。   首先在攻击机">
+<meta property="og:description" content="利用条件，目标系统window10以下，开启了文件共享。实验环境如下： 1、 攻击机，windows10，64位，IP地址 192.168.46.1 2、 监听机，ubuntu，64位，IP地址 192.168.46.139 3、 靶机，win7sp3，32位，IP 192.168.46.129 在复现之前首先要对fb.py文件进行一些修改，将27，28，29，72行代码注释掉。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/2.png">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/4.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/5.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/6.png">
-<meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/images7.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/7.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/8.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/10.png">
@@ -31,10 +31,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/15.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/16.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/17.png">
-<meta property="og:updated_time" content="2018-07-02T16:46:56.449Z">
+<meta property="og:updated_time" content="2018-07-02T17:02:57.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="方程式SMB漏洞复现">
-<meta name="twitter:description" content="利用条件，目标系统window10以下，开启了文件共享。实验环境如下： 1、 攻击机，windows10，64位，IP地址 192.168.46.1 2、 监听机，ubuntu，64位，IP地址 192.168.46.139 3、 靶机，win7sp3，32位，IP 192.168.46.129 在复现之前首先要对fb.py文件进行一些修改，将27，28，29，72行代码注释掉。   首先在攻击机">
+<meta name="twitter:description" content="利用条件，目标系统window10以下，开启了文件共享。实验环境如下： 1、 攻击机，windows10，64位，IP地址 192.168.46.1 2、 监听机，ubuntu，64位，IP地址 192.168.46.139 3、 靶机，win7sp3，32位，IP 192.168.46.129 在复现之前首先要对fb.py文件进行一些修改，将27，28，29，72行代码注释掉。">
 <meta name="twitter:image" content="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/1.png">
   
     <link rel="alternate" href="/atom.xml" title="Ryweer&#39;s Blog" type="application/atom+xml">
@@ -85,7 +85,7 @@
         <section id="main"><article id="post-方程式SMB漏洞复现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/03/方程式SMB漏洞复现/" class="article-date">
-  <time datetime="2018-07-02T16:46:56.453Z" itemprop="datePublished">2018-07-03</time>
+  <time datetime="2018-07-02T17:02:57.320Z" itemprop="datePublished">2018-07-03</time>
 </a>
     
   </div>
@@ -109,6 +109,7 @@
 <p>2、 监听机，ubuntu，64位，IP地址 192.168.46.139</p>
 <p>3、 靶机，win7sp3，32位，IP 192.168.46.129</p>
 <p>在复现之前首先要对fb.py文件进行一些修改，将27，28，29，72行代码注释掉。</p>
+<a id="more"></a>
 <p><img src="/2018/07/03/方程式SMB漏洞复现/1.png" alt="1"></p>
 <p><img src="/2018/07/03/方程式SMB漏洞复现/2.png" alt="2"></p>
 <p>首先在攻击机上运行fb.py脚本。</p>
@@ -119,7 +120,7 @@
 <p><img src="/2018/07/03/方程式SMB漏洞复现/5.png" alt="5"></p>
 <p>选择Eternalblue模块，之后一路默认回车直到让选择目标系统和位数时自己根据情况选择，然后继续默认回车。 </p>
 <p><img src="/2018/07/03/方程式SMB漏洞复现/6.png" alt="6"></p>
-<p><img src="/2018/07/03/方程式SMB漏洞复现/images7.png" alt="7"></p>
+<p><img src="/2018/07/03/方程式SMB漏洞复现/7.png" alt="7"></p>
 <p><img src="/2018/07/03/方程式SMB漏洞复现/8.png" alt="8"></p>
 <p>输入 use Doublepulsar 使用 Doublepulsar插件，之后一路回车到选择项。 </p>
 <p><img src="/2018/07/03/方程式SMB漏洞复现/9.png" alt="9"></p>
@@ -149,13 +150,27 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/" data-id="cjj4hywc10000qrzoe8xrb161" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/03/方程式SMB漏洞复现/" data-id="cjj5b5vvw0001djzos54xrq2x" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2018/07/03/Ubuntu DOS界面使用中文输入法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Ubuntu DOS界面使用中文输入法
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
@@ -186,6 +201,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/03/Ubuntu DOS界面使用中文输入法/">Ubuntu DOS界面使用中文输入法</a>
+          </li>
         
           <li>
             <a href="/2018/07/03/方程式SMB漏洞复现/">方程式SMB漏洞复现</a>
