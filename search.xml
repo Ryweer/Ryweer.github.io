@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2018%2F07%2F18%2Fcenter%20%E9%87%8D%E6%9E%84%E8%8F%9C%E5%88%80%E4%B9%8B%E8%B7%AF%E2%80%94%E2%80%94%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E4%B8%8E%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95center%2F</url>
+    <content type="text"><![CDATA[自写菜刀之路——PHP一句话木马的实现原理与利用方法最近为了紧跟大佬室友的学习步伐，提高自身的开发能力，为日后坚持社会主义核心价值观提供知识技能支持，本菜皮皮踏上了自写菜刀的征程。这是大佬室友给的第一个学习建议，不敢懈怠，以前是没大佬指点，现在有了，我也想体会一下当大佬的感觉。 同时，在学习之余做下日常学习记录。都是基础知识，但基础很重要。 PHP一句话PHP一句话可分为eval和system两类。 12&lt;?php @eval($_GET["code"])?&gt;&lt;?php @system($_POST["cmd"])?&gt; 那么用eval和system有什么区别呢？在这里大概说一说，应为对这类脚本语言都不熟悉，就只能说说自己了解的。 eval()是把其中的参数按照PHP代码来解析，因此eval()函数后跟的都必须是合法的PHP代码，切必须以分号结尾。 使用eval()函数的一句话实现菜刀的功能： code参数后边直接跟PHP代码就可以执行了，记得以分号结尾。 1shell1.php?code=phpinfo(); 再说system()函数，PHP中system()函数的参数是直接跟具体命令而不是PHP代码。举个例子： 1&lt;?php @system($_GET["code"])?&gt; 对于这样的一句话，通过GET方法提交参数后的效果如下图： 可以看到，code参数直接赋值具体命令就可以完成命令执行了。总结一下就是eval()函数是代码执行，system()函数是命令执行。 当然现在直接使用这两个函数的一句话基本看不到了，毕竟特征太明显了，大部分情况下都会被拦截。但高深的一句话用法以后再讨论了，当下还是要先写菜刀。。。。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[易语言实现天刀兑换活动Q币]]></title>
+    <url>%2F2018%2F07%2F05%2F%E6%98%93%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%A4%A9%E5%88%80%E5%85%91%E6%8D%A2%E6%B4%BB%E5%8A%A8Q%E5%B8%81%2F</url>
+    <content type="text"><![CDATA[最近天刀新职业版本出了个活动可以使用活动Q兑换真实Q币，想想还是不错的。但是每天都抢不着是真的难受，为了应对脚本猖獗的游戏环境，我决定写个脚本来加入他们-0- 一个功能很单一的程序，软件支持自己设置提交次数，模拟浏览器登录。其他好像没什么了，简单测试了一下基本没啥大问题，但是应该还有些小bug，后边发现了再改吧。附上源代码。 点击下载]]></content>
+      <categories>
+        <category>编程日常</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Ubuntu DOS界面使用中文输入法]]></title>
     <url>%2F2018%2F07%2F04%2FUbuntu%20DOS%E7%95%8C%E9%9D%A2%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95%2F</url>
     <content type="text"><![CDATA[在ubuntu非图形界面下输入中文的方法： 1、安装一个输入法，以搜狗输入法为例。在终端下操作： 1sudo apt-get install fcitx im-switch fbterm fcitx-frontend-fbterm 2、以前的版本在安装完成后需要配置用户目录下的.fbtermrc文件，现在不需要了。安装完成后直接通过ctrl+space即可切换成中文输入法。如果切换无效，可以输入fcitx回车，完成后就可以通过ctrl+space切换中文输入了。]]></content>
