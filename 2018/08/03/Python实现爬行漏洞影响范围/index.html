@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python实现爬行漏洞影响范围 | Ryweer&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,XPath," />
+  
+
+  <meta name="description" content="​    因为工作上有这个需求，想着顺便练练Python，一开始真的是被Python 2.7给坑惨了。也不知道是因为官方不在提供2.7的支持还是其他问题，一开始配置包括安装pip，pip升级，pip安装模块各种问题，差点炸毛了。后改用Python 3世界终于变得清净了。 ​    具体功能很简单，就是爬去漏洞平台指定CVE的影响范围，思路是先通过xpath提取内容所在的标签，然后再对提取的内容进行">
+<meta name="keywords" content="Python,XPath">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python实现爬行漏洞影响范围">
+<meta property="og:url" content="http://118.24.162.88/2018/08/03/Python实现爬行漏洞影响范围/index.html">
+<meta property="og:site_name" content="Ryweer&#39;s Blog">
+<meta property="og:description" content="​    因为工作上有这个需求，想着顺便练练Python，一开始真的是被Python 2.7给坑惨了。也不知道是因为官方不在提供2.7的支持还是其他问题，一开始配置包括安装pip，pip升级，pip安装模块各种问题，差点炸毛了。后改用Python 3世界终于变得清净了。 ​    具体功能很简单，就是爬去漏洞平台指定CVE的影响范围，思路是先通过xpath提取内容所在的标签，然后再对提取的内容进行">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-03T08:47:26.365Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python实现爬行漏洞影响范围">
+<meta name="twitter:description" content="​    因为工作上有这个需求，想着顺便练练Python，一开始真的是被Python 2.7给坑惨了。也不知道是因为官方不在提供2.7的支持还是其他问题，一开始配置包括安装pip，pip升级，pip安装模块各种问题，差点炸毛了。后改用Python 3世界终于变得清净了。 ​    具体功能很简单，就是爬去漏洞平台指定CVE的影响范围，思路是先通过xpath提取内容所在的标签，然后再对提取的内容进行">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cben" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">Box</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">Box</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Blog
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Category
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            About
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python实现爬行漏洞影响范围" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python实现爬行漏洞影响范围</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Ryweer</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/编程日常/">编程日常</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>​    因为工作上有这个需求，想着顺便练练Python，一开始真的是被Python 2.7给坑惨了。也不知道是因为官方不在提供2.7的支持还是其他问题，一开始配置包括安装pip，pip升级，pip安装模块各种问题，差点炸毛了。后改用Python 3世界终于变得清净了。</p>
+<p>​    具体功能很简单，就是爬去漏洞平台指定CVE的影响范围，思路是先通过xpath提取内容所在的标签，然后再对提取的内容进行正则匹配，最后输出到txt文件中。具体代码如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(uri)</span>:</span></span><br><span class="line">    data = urllib.request.urlopen(uri)</span><br><span class="line">    x = data.read()</span><br><span class="line">    x = (x.decode(<span class="string">"utf-8"</span>))</span><br><span class="line">    html = etree.HTML(x)</span><br><span class="line">    items = html.xpath(<span class="string">"//div[@class=\"summary\"]/p/text()"</span>)</span><br><span class="line">    <span class="string">"//div[contains(@id,\"info_\")]"</span></span><br><span class="line">    <span class="comment">#judge if the items[]'s value is null. if true, pass.</span></span><br><span class="line">    <span class="keyword">if</span> items:</span><br><span class="line">        re_ret = re_place1(items[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> re_ret:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            re_ret = re_place2(items[<span class="number">0</span>])</span><br><span class="line">            <span class="keyword">if</span> re_ret:</span><br><span class="line">                <span class="keyword">pass</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                re_ret=<span class="string">'Others'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        re_ret=<span class="string">'NULL'</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> (re_ret)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">re_place1</span><span class="params">(item)</span>:</span></span><br><span class="line">    r_rule = <span class="string">r'\)\. (S[^\u4e00-\u9fa5]+)\. [E|D]'</span></span><br><span class="line">    re_result = re.findall(r_rule,item)</span><br><span class="line">    <span class="keyword">if</span> re_result:</span><br><span class="line">        <span class="keyword">return</span> re_result[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">re_place2</span><span class="params">(item)</span>:</span></span><br><span class="line">    r_rule = <span class="string">r'([^\u4e00-\u9fa5]+) allows'</span></span><br><span class="line">    re_result = re.findall(r_rule,item)</span><br><span class="line">    <span class="keyword">if</span> re_result:</span><br><span class="line">        <span class="keyword">return</span> re_result[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment">#uri</span></span><br><span class="line">    <span class="comment">#http://cve.scap.org.cn/CVE-2018-2771.html</span></span><br><span class="line">    f = open(<span class="string">'D:\\Users\\sangfor\\Desktop\\mysql.txt'</span>,mode=<span class="string">'r'</span>)</span><br><span class="line">    dic_cve = f.read().split(<span class="string">'\n'</span>)</span><br><span class="line">    <span class="comment">#print(dic_cve)</span></span><br><span class="line">    <span class="comment">#creat file to write</span></span><br><span class="line">    wr_file = open(<span class="string">'results.txt'</span>,mode=<span class="string">'w'</span>)</span><br><span class="line">    <span class="keyword">for</span> each <span class="keyword">in</span> dic_cve:</span><br><span class="line">        <span class="comment">#print(each)</span></span><br><span class="line">        url = <span class="string">'http://cve.scap.org.cn/'</span> + each + <span class="string">'.html'</span></span><br><span class="line">        get_ret = main(url)</span><br><span class="line">        wr_file.writelines(each+<span class="string">','</span>+get_ret+<span class="string">'\n'</span>)</span><br><span class="line">    wr_file.close()</span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">意见反馈</span>
+      <div class="donation-body">
+        <div class="tip text-center">有什么意见或建议请发送到邮件</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>1060943124@qq.com</span>
+            
+            <img src="/images/avatar.jpg" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+
+   
+      <div class="git"></div>
+   
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Blog
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Category
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              About
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Search
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

