@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>从DOS攻击看TCP协议 | Ryweer&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="DOS,DDOS,tcp/ip," />
+  
+
+  <meta name="description" content="前言  好久没更新博客了，因为前段时间工作的关系没什么时间整理，现在闲下来了，就把最近的一些收获整理整理发出来。纵览各厂商的安全招聘信息，差不多都有一些共同的要求，比如熟悉TCP/IP协议，熟悉HTTP协议呀什么的。一直以来对于TCP协议的理解只停止在知道他是三次握手。再往深处就不知道是什么情况了，恰逢需要对DOS攻击进行分析，在分析过程中感觉学到了很多，这里分享一下。相信还有不少我这种喜欢不求甚">
+<meta name="keywords" content="DOS,DDOS,tcp&#x2F;ip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从DOS攻击看TCP协议">
+<meta property="og:url" content="http://118.24.162.88/2018/11/16/从DOS攻击看TCP协议/index.html">
+<meta property="og:site_name" content="Ryweer&#39;s Blog">
+<meta property="og:description" content="前言  好久没更新博客了，因为前段时间工作的关系没什么时间整理，现在闲下来了，就把最近的一些收获整理整理发出来。纵览各厂商的安全招聘信息，差不多都有一些共同的要求，比如熟悉TCP/IP协议，熟悉HTTP协议呀什么的。一直以来对于TCP协议的理解只停止在知道他是三次握手。再往深处就不知道是什么情况了，恰逢需要对DOS攻击进行分析，在分析过程中感觉学到了很多，这里分享一下。相信还有不少我这种喜欢不求甚">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://118.24.162.88/2018/11/16/从DOS攻击看TCP协议/1542352225784.png">
+<meta property="og:image" content="https://image.3001.net/images/20180907/1536316424_5b92540870a40.png!small">
+<meta property="og:image" content="https://image.3001.net/images/20180907/1536316491_5b92544b25098.png!small">
+<meta property="og:image" content="https://image.3001.net/images/20180907/1536316523_5b92546b0d165.png!small">
+<meta property="og:image" content="https://image.3001.net/images/20180907/1536316578_5b9254a24f8a7.png!small">
+<meta property="og:image" content="https://image.3001.net/images/20180907/1536316606_5b9254bea033e.png!small">
+<meta property="og:image" content="https://image.3001.net/images/20180907/1536316640_5b9254e09c3a5.png!small">
+<meta property="og:image" content="https://image.3001.net/images/20180907/1536316656_5b9254f0a680b.png!small">
+<meta property="og:updated_time" content="2018-11-16T07:18:56.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从DOS攻击看TCP协议">
+<meta name="twitter:description" content="前言  好久没更新博客了，因为前段时间工作的关系没什么时间整理，现在闲下来了，就把最近的一些收获整理整理发出来。纵览各厂商的安全招聘信息，差不多都有一些共同的要求，比如熟悉TCP/IP协议，熟悉HTTP协议呀什么的。一直以来对于TCP协议的理解只停止在知道他是三次握手。再往深处就不知道是什么情况了，恰逢需要对DOS攻击进行分析，在分析过程中感觉学到了很多，这里分享一下。相信还有不少我这种喜欢不求甚">
+<meta name="twitter:image" content="http://118.24.162.88/2018/11/16/从DOS攻击看TCP协议/1542352225784.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cben" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">Box</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">Box</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Blog
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Category
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            About
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-从DOS攻击看TCP协议" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">从DOS攻击看TCP协议</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.11.16</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Ryweer</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/学习日常/">学习日常</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><strong>前言</strong> </p>
+<p>好久没更新博客了，因为前段时间工作的关系没什么时间整理，现在闲下来了，就把最近的一些收获整理整理发出来。纵览各厂商的安全招聘信息，差不多都有一些共同的要求，比如熟悉TCP/IP协议，熟悉HTTP协议呀什么的。一直以来对于TCP协议的理解只停止在知道他是三次握手。再往深处就不知道是什么情况了，恰逢需要对DOS攻击进行分析，在分析过程中感觉学到了很多，这里分享一下。相信还有不少我这种喜欢不求甚解的朋友们会有所收获，有什么不对的地方也请大家指出来。 下面有些用图因为投过freebuf，所以被打上水印了，也懒得改了就直接用了。</p>
+<p><strong>正文</strong> </p>
+<p>首先还是贴一下经典的三次握手图。</p>
+<p><img src="/2018/11/16/从DOS攻击看TCP协议/1542352225784.png" alt="1542352225784"></p>
+<p>首先由客户端发送一个SYN数据包，其中包含SYN和SEQ两个值，因为第一次发起连接不需要ACK进行确认，此时ACK等于0，所以第一次连接中没有ACK的字段，SYN=1表示建立连接，生成一个SEQ的值做校验位。</p>
+<p>然后就进入了第二次握手的过程，服务器接收到建立连接请求后要确认联机信息，生成ack（第一次握手包的SEQ值减一）表示确认的数据包，然后重新生成了校验值SEQ。</p>
+<p>最后在第三次握手中，客户端接受到第二次握手包传递的信息，回复ACK=1表示确认建立连接成功，还有ack值表示所确认的第二次握手包的归属。</p>
+<p>好了上面的所有人都知道，就不多追述了。我们下面通过DOS攻击原理再来看具体TCP/IP在实际应用中有什么表现。</p>
+<p><strong>SYN FLOOD</strong></p>
+<p>SYN flood又叫SYN洪水攻击，属于阻断服务攻击。在TCP三次握手过程中，用户会先向服务器发生SYN数据包请求与服务器建立连接，服务器在接收到SYN包后，会返回SYN-ACK数据包给用户，并等待用户发送应答数据包。</p>
+<p>SYN FLOOD就是利用这个过程的漏洞，如果服务器在向客户端发送SYN-ACK数据包后没有收到用户端的应答，就会将连接挂起，并尝试重新发送数据包。这个过程会持续很长时间，时间大概在30 s-2 min左右。这样就造成了安全隐患，当巨量的TCP请求同时出现这种情况时，服务器会消耗大量的资源去处理这些半连接，从而造成拒绝服务漏洞。 </p>
+<p>在上面所述的基础上，就可以介绍常用的SYN FLOOD攻击手段——Remote TCP SYN Flood(Source IP Address Spoofing)。通过修改SYN数据包中源IP，将源IP改为不存在的地址，可以使所有的连接都被挂起成为半连接。下面是DOS过程中单个数据流的行为截图。 </p>
+<p><img src="https://image.3001.net/images/20180907/1536316424_5b92540870a40.png!small" alt="SYN FLOOD.png"> </p>
+<p><strong>TCP Connection Flood</strong></p>
+<p>短时间有大量TCP建立连接，每个客户端持续发送PSH+ACK维持连接直到超时，TCP的Payload段可修改，一般很小。 </p>
+<p><img src="https://image.3001.net/images/20180907/1536316491_5b92544b25098.png!small" alt="TCP_CONNECT_FLOOD.png"> </p>
+<p>从上面的图中可以看出，攻击方在建立TCP连接后，会不停发送PSH-ACK数据包，每个数据包长度都很小（这里是1），用作保持TCP连接，当这种请求处于高并发状态时，就可能导致服务器宕机。</p>
+<p><strong>SSL Flood AND THC SSL Flood</strong></p>
+<p>SSL FLOOD和THC SSL FLOOD都是利用服务器端协商安全TLS连接时，需要消耗较多的处理能力。当向服务器发送大量的数据，或者是不断的要求重新协商连接时，会导致服务器的资源超出限制并使其宕机。 </p>
+<p>下面是THC SSL FLOOD攻击时的部分流量截图。 </p>
+<p><img src="https://image.3001.net/images/20180907/1536316523_5b92546b0d165.png!small" alt="THC_SSL_FLOOD.png"> </p>
+<p>这里主要就是了解下TLS协议的逻辑漏洞处，恶意用户可以通过重复协商秘钥的方式消耗服务器资源。</p>
+<p><strong>RST/FIN/SYN-ACK FLOOD</strong></p>
+<p>这三类攻击方式的利用思路都是和SYN FLOOD一样的。他们都是利用TCP三次握手过程中的漏洞，当服务器收到一个RST，FIN或SYN-ACK包时，都回去查询该数据流是否是已经确认过的数据流，如果不是就会被弃置掉。这个过程中就涉及到查询和处理操作，大量的此类操作会耗尽服务器资源从而导致宕机。</p>
+<p><strong>HTTP FLOOD</strong> </p>
+<p>因为HTTP协议是基于TCP的，所以这里也聊聊应用层的DOS方式。 </p>
+<p>攻击者生成大量HTTP请求并将其发送到受害者服务器。每个攻击端都可以生成大量合法请求（每秒超过10个）。使用少量PC就可以成功执行此类攻击。除了GET请求之外，还可以使用POST请求或任何其他具有相同目的的HTTP活动，使Web服务器过载并使其不可用。 </p>
+<p>下面是部分流量截图。 </p>
+<p><img src="https://image.3001.net/images/20180907/1536316578_5b9254a24f8a7.png!small" alt="HTTP_FLOOD.png"> </p>
+<p>从流量中可以分析出，攻击方向服务器发送了大量的HTTP请求，服务器一开始可以正常响应，接收到的HTTP请求多了后，渐渐的出现部分数据包响应延时的情况，并且其出现频率随着时间的增加越来越多。另外，由于HTTP协议的特性，完成HTTP FLOOD攻击不需要太多的攻击方，只需要少量的攻击方就可以完成攻击<strong>。</strong></p>
+<p><strong>HTTP Slow Body/Header Flood</strong> </p>
+<p>HTTP协议中规定每一个REQUEST请求都要求以空行结尾，也就是说要以\r\n\r\n结尾。如果没有以这种符号结尾，服务器会一直等待知道超时。在等待的过程中占用线程，当高并发请求时，服务器线程数很容易达到极限，若达到极限就无法处理新的合法HTTP请求，Slow Header (slowloris) 就是利用这个漏洞达到DOS攻击的目的。举个例子。 </p>
+<p><img src="https://image.3001.net/images/20180907/1536316606_5b9254bea033e.png!small" alt="SLOW_HTTP_HEADER_FLOOD_1.png"> </p>
+<p>这是一个slowloris过程中的数据包，以下是他的16进制包。 </p>
+<p><img src="https://image.3001.net/images/20180907/1536316640_5b9254e09c3a5.png!small" alt="SLOW_HTTP_HEADER_FLOOD_2.png"> </p>
+<p>从这里可以看到，REQUEST请求中最后的字符为0d 0a（即\r\n），而正常的REQUEST请求中结束的字符应该为0d 0a 0d 0a（\r\n\r\n），服务器接受到这样的数据包，会认为HTTP请求头部没接受完，然后一直挂起连接等待接收，占用系统资源。</p>
+<p>而SLOW POST则是利用另外一个漏洞，当发送POST数据包时，会在REQUEST  HEADER中设置CONTENT-LENGTH字段表示所传的PAYLOAD长度，SLOW POST攻击中，将CONTENT-LENGTH字段的值故意设置的很大，但是实际传输的PAYLOAD数据又很小，导致服务器认为数据没有传输完从而挂起等待接收数据直到连接超时。下图为SLOW POST过程中的数据包，可以看到CONTENT-LENGTH字段的值被设置的很大，但实际传输的数据却很短。 </p>
+<p><img src="https://image.3001.net/images/20180907/1536316656_5b9254f0a680b.png!small" alt="SLOW_HTTP_BODY_FLOOD_1.png"> </p>
+<p><strong>总结</strong></p>
+<p>在只知道TCP基本理论的前提下，通过分析DOS攻击的方式和原理，使笔者对TCP/IP协议有了更加深入的认识，其中包括了数据重发，握手过程的校验，具体到某一步校验时可能存在的脆弱性，TCP协议在具体处理错误报文时的处理方式等。总的感觉学到了不少，但是同时也感慨年少时不求甚解是有多坑。</p>
+<p>文中对TCP/IP协议或DOS攻击过程中如有理解错误的地方还望指正。</p>
+<p>另外DOS中基于UDP的攻击方式因为不涉及本文思想就没有再提，有兴趣的同学可以通过下面的参考文章了解，或者留言处留言。</p>
+<p>最后，好好学习，天天向上。</p>
+<p>参考文章（太多了，放几处主要的吧）：</p>
+<p><a href="https://www.cnblogs.com/andashu/p/6344306.html" target="_blank" rel="noopener">https://www.cnblogs.com/andashu/p/6344306.html</a></p>
+<p><a href="http://blog.chinaunix.net/uid-20556054-id-3164909.html" target="_blank" rel="noopener">http://blog.chinaunix.net/uid-20556054-id-3164909.html</a></p>
+<p><a href="https://www.cnblogs.com/chengyunshen/p/7196348.html" target="_blank" rel="noopener">https://www.cnblogs.com/chengyunshen/p/7196348.html</a></p>
+<p><a href="https://blog.csdn.net/u011672712/article/details/51656500" target="_blank" rel="noopener">https://blog.csdn.net/u011672712/article/details/51656500</a></p>
+
+    
+  </div>
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">意见反馈</span>
+      <div class="donation-body">
+        <div class="tip text-center">有什么意见或建议请发送到邮件</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>1060943124@qq.com</span>
+            
+            <img src="/images/avatar.jpg" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/11/16/记一道CTF/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+
+   
+      <div class="git"></div>
+   
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Blog
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Category
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              About
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              Search
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
