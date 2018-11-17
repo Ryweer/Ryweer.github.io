@@ -7,28 +7,34 @@
 <head>
   <meta charset="utf-8">
   
-  <title>记一道CTF | Ryweer&#39;s Blog</title>
+  <title>CTF之一道图片隐写题 | Ryweer&#39;s Blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="CTF,python,hash识别," />
+    <meta name="keywords" content="ctf,图片隐写，压缩包爆破," />
   
 
-  <meta name="description" content="题目：某银行客户端以安全著称，所有网络流量都开启了密码学防护机制。有一天，你抓到了局域网中的网银登录流量。在这个流量中，密码字段的值为 ac22543d5382cbf48b6ebcf6e40f123d9ca4b91f9998e4c2f2422402。根据分析，你获得了如下的线索： 上面抓到的登录流量密码字段是 SHA 系列哈希算法的哈希值。这个登录密码也是银行卡的 ATM 取款密码。登录密码的哈希">
-<meta name="keywords" content="CTF,python,hash识别">
+  <meta name="description" content="下面是这个图片，有兴趣的可以下下去自己玩玩。     先扔进binwalk里看看。   发现有一个zip文件，用foremost分离出来。   看到了那个zip文件，尝试解压，发现需要密码。这里卡了一下，一开始以为考的是伪加密，饶了些圈子，后来发现打开压缩包里有个提示信息\d{8}，想着这可能是提示密码是8位纯数字，然后就用rar爆破工具尝试爆破。 爆破出来密码是87659804，成功解压压缩包。">
+<meta name="keywords" content="ctf,图片隐写，压缩包爆破">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一道CTF">
-<meta property="og:url" content="http://118.24.162.88/2018/11/16/记一道CTF/index.html">
+<meta property="og:title" content="CTF之一道图片隐写题">
+<meta property="og:url" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/index.html">
 <meta property="og:site_name" content="Ryweer&#39;s Blog">
-<meta property="og:description" content="题目：某银行客户端以安全著称，所有网络流量都开启了密码学防护机制。有一天，你抓到了局域网中的网银登录流量。在这个流量中，密码字段的值为 ac22543d5382cbf48b6ebcf6e40f123d9ca4b91f9998e4c2f2422402。根据分析，你获得了如下的线索： 上面抓到的登录流量密码字段是 SHA 系列哈希算法的哈希值。这个登录密码也是银行卡的 ATM 取款密码。登录密码的哈希">
+<meta property="og:description" content="下面是这个图片，有兴趣的可以下下去自己玩玩。     先扔进binwalk里看看。   发现有一个zip文件，用foremost分离出来。   看到了那个zip文件，尝试解压，发现需要密码。这里卡了一下，一开始以为考的是伪加密，饶了些圈子，后来发现打开压缩包里有个提示信息\d{8}，想着这可能是提示密码是8位纯数字，然后就用rar爆破工具尝试爆破。 爆破出来密码是87659804，成功解压压缩包。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://118.24.162.88/2018/11/16/记一道CTF/1542350709574.png">
-<meta property="og:updated_time" content="2018-11-16T06:59:15.311Z">
+<meta property="og:image" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/x.jpg">
+<meta property="og:image" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/1.png">
+<meta property="og:image" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/2.png">
+<meta property="og:image" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/3.png">
+<meta property="og:image" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/4.png">
+<meta property="og:image" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/5.png">
+<meta property="og:image" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/6.png">
+<meta property="og:updated_time" content="2018-11-16T07:57:41.081Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一道CTF">
-<meta name="twitter:description" content="题目：某银行客户端以安全著称，所有网络流量都开启了密码学防护机制。有一天，你抓到了局域网中的网银登录流量。在这个流量中，密码字段的值为 ac22543d5382cbf48b6ebcf6e40f123d9ca4b91f9998e4c2f2422402。根据分析，你获得了如下的线索： 上面抓到的登录流量密码字段是 SHA 系列哈希算法的哈希值。这个登录密码也是银行卡的 ATM 取款密码。登录密码的哈希">
-<meta name="twitter:image" content="http://118.24.162.88/2018/11/16/记一道CTF/1542350709574.png">
+<meta name="twitter:title" content="CTF之一道图片隐写题">
+<meta name="twitter:description" content="下面是这个图片，有兴趣的可以下下去自己玩玩。     先扔进binwalk里看看。   发现有一个zip文件，用foremost分离出来。   看到了那个zip文件，尝试解压，发现需要密码。这里卡了一下，一开始以为考的是伪加密，饶了些圈子，后来发现打开压缩包里有个提示信息\d{8}，想着这可能是提示密码是8位纯数字，然后就用rar爆破工具尝试爆破。 爆破出来密码是87659804，成功解压压缩包。">
+<meta name="twitter:image" content="http://118.24.162.88/2018/11/16/CTF之一道图片隐写题/x.jpg">
 
   
 
@@ -152,17 +158,12 @@
 </div>
 
 
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目："><span class="toc-text">题目：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解法："><span class="toc-text">解法：</span></a></li></ol>
-  </div>
-
 
 
 <div class="content content-post CENTER">
-   <article id="post-记一道CTF" class="article article-type-post" itemprop="blogPost">
+   <article id="post-CTF之一道图片隐写题" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">记一道CTF</h1>
+    <h1 class="post-title">CTF之一道图片隐写题</h1>
 
     <div class="article-meta">
       <span>
@@ -200,15 +201,25 @@
 
   <div class="article-content">
     
-      <h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p>某银行客户端以安全著称，所有网络流量都开启了密码学防护机制。有一天，你抓到了局域网中的网银登录流量。在这个流量中，密码字段的值为 ac22543d5382cbf48b6ebcf6e40f123d9ca4b91f9998e4c2f2422402。根据分析，你获得了如下的线索：</p>
-<p>上面抓到的登录流量密码字段是 SHA 系列哈希算法的哈希值。<br>这个登录密码也是银行卡的 ATM 取款密码。<br>登录密码的哈希值是加盐之后计算的结果，根据逆向分析，盐的值是用户名的拼音，而你推测出了流量来自于邻居 “张三丰”<br>有了这些线索之后，你能够分析出密码是什么吗？</p>
-<p>flag 提交格式： flag{密码哈希算法盐}<br>举例： flag{123456_SHA999_lisi}</p>
-<h2 id="解法："><a href="#解法：" class="headerlink" title="解法："></a>解法：</h2><p>已知加密算法是SHA系列的，hash值为ac22543d5382cbf48b6ebcf6e40f123d9ca4b91f9998e4c2f2422402。其实问题的关键就是找出这是哪一种SHA加密，因为没有一眼看穿的本事，所以用一个脚本测了测。</p>
-<p>脚本地址：<a href="https://github.com/AnimeshShaw/Hash-Algorithm-Identifier" target="_blank" rel="noopener">https://github.com/AnimeshShaw/Hash-Algorithm-Identifier</a></p>
-<p><img src="/2018/11/16/记一道CTF/1542350709574.png" alt="1542350709574"></p>
-<p>结果显示最可能的加密类型是sha-224，接下来就直接用python跑出来就行了。下面是脚本。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hashencrypt</span><span class="params">(pwd,salt)</span>:</span></span><br><span class="line">    crypt_data = hashlib.sha224(pwd)</span><br><span class="line">    crypt_data.update(salt)</span><br><span class="line">    <span class="keyword">return</span> crypt_data.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> pwd <span class="keyword">in</span> range(<span class="number">100000</span>,<span class="number">1000000</span>):</span><br><span class="line">        payload = hashencrypt(str(pwd),<span class="string">'zhangsanfeng'</span>)</span><br><span class="line">        <span class="keyword">if</span> payload == <span class="string">'ac22543d5382cbf48b6ebcf6e40f123d9ca4b91f9998e4c2f2422402'</span>:</span><br><span class="line">            print(pwd)</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p>解出来密码是877295，所以flag就是flag{877295_SHA224_zhangsanfeng}。</p>
+      <p>下面是这个图片，有兴趣的可以下下去自己玩玩。</p>
+<center><img src="/2018/11/16/CTF之一道图片隐写题/x.jpg" alt="题目"></center>
+
+
+
+<p>先扔进binwalk里看看。</p>
+<center><img src="/2018/11/16/CTF之一道图片隐写题/1.png" alt="img"></center>
+
+<p>发现有一个zip文件，用foremost分离出来。</p>
+<center><img src="/2018/11/16/CTF之一道图片隐写题/2.png" alt="2"></center>
+
+<p>看到了那个zip文件，尝试解压，发现需要密码。这里卡了一下，一开始以为考的是伪加密，饶了些圈子，后来发现打开压缩包里有个提示信息\d{8}，想着这可能是提示密码是8位纯数字，然后就用rar爆破工具尝试爆破。<img src="/2018/11/16/CTF之一道图片隐写题/3.png" alt="3"></p>
+<p>爆破出来密码是87659804，成功解压压缩包。发现flag文件没有格式，用notepad++打开看看，发现了PK文件头。</p>
+<p><img src="/2018/11/16/CTF之一道图片隐写题/4.png" alt="4"></p>
+<p>看来还是一个压缩包，改了格式解压，发现了里面的文件。</p>
+<p><img src="/2018/11/16/CTF之一道图片隐写题/5.png" alt="5"></p>
+<p>浏览了一下，基本是xml的格式，直接用notepad++全部搜索了一遍flag，定位到了一个文件。 </p>
+<p><img src="/2018/11/16/CTF之一道图片隐写题/6.png" alt="6"></p>
+<p>找到flag，flag为flag{3ba00e16-fa65-4df6-8669-5580728269dc}。</p>
 
     
   </div>
@@ -239,10 +250,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/08/03/Python实现爬行漏洞影响范围/">
+    <a class="show pull-left" href="/2018/11/16/记一道CTF/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/11/16/CTF之一道图片隐写题/">
+    <a class="show pull-right" href="/2018/11/17/从DOS攻击看TCP协议/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
