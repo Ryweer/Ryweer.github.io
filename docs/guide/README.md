@@ -12,6 +12,7 @@
     <code>git config --global user.email "your.email@example.com" </code>
 
     推荐：设置默认分支名为 main（新版 Git 默认）
+
     <code>git config --global init.defaultBranch main</code>
 
     查看所有配置
@@ -21,6 +22,7 @@
     查看特定配置
 
     <code>git config user.name</code>
+
     <code>git config user.email</code>
     
   - git配置认证
@@ -41,15 +43,11 @@
 
     <b>步骤 3：添加到 GitHub</b>
 
-    登录 GitHub → Settings → SSH and GPG keys
-
-    点击 New SSH key
+    登录 GitHub → Settings → SSH and GPG keys，点击 New SSH key
 
     ![](../../assets/images/3.png)
 
-    Title 填 Windows PC，Key 粘贴刚才复制的内容
-
-    点击 Add SSH key
+    Title 填 Windows PC，Key 粘贴刚才复制的内容，点击 Add SSH key
 
     <b>步骤 4：测试连接</b>
 
