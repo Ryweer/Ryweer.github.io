@@ -1,4 +1,4 @@
-# Git使用
+## Git使用
   - <b>git安装</b>
   
   <code>sudo apt install git</code>
