@@ -1,6 +1,5 @@
 - [🏠 首页](/)
-- **🚀 WIKI相关**
-  - [Git搭建](docs/guide/)
+- [**🚀 WIKI相关**](docs/guide/)
 - **📖 跨境知识库**
   - [TEMU](docs/跨境/Temu/README.md)
   - [Mercado](docs/跨境/Mercado/README.md)
