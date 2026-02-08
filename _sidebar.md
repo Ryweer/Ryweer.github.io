@@ -1,6 +1,6 @@
 - [🏠 首页](/)
-- [🚀 WIKI相关](docs/guide/README.md)
-  - [更新指导](docs/01-快速开始/install.md)
-- [📖 跨境知识库](docs/跨境/)
+- 🚀 WIKI相关
+  - [Git搭建](docs/guide/README.md)
+- 📖 跨境知识库
   - [TEMU](docs/跨境/Temu/平台介绍.md)
   - [Mercado](docs/跨境/Mercado/平台介绍.md)
