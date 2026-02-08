@@ -3,38 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="我的 Wiki 知识库">
-  <meta name="keywords" content="docsify, wiki, documentation">
   <title>📚 我的 Wiki</title>
-  
-  <!-- Docsify 主题 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css">
   
-  <!-- 侧边栏折叠插件 CSS -->
+  <!-- 引入侧边栏折叠插件 CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css">
   
-  <!-- 代码高亮主题（可选） -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.css">
-  
-  <!-- 自定义样式 -->
   <style>
-    /* ========================================
-       全局样式
-    ======================================== */
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-    
-    /* ========================================
-       侧边栏样式
-    ======================================== */
     /* 固定侧边栏宽度 */
     .sidebar {
       width: 300px !important;
       min-width: 300px !important;
-      background-color: #f8f9fa !important;
-      border-right: 1px solid #e9ecef !important;
+    }
+    
+    .main {
+      margin-left: 300px !important;
     }
     
     /* 侧边栏标题 */
@@ -47,36 +30,15 @@
       font-weight: bold !important;
     }
     
-    /* 侧边栏导航 */
-    .sidebar-nav {
-      padding-top: 10px !important;
-    }
-    
-    /* 导航分组标题 */
-    .sidebar-nav > ul > li.section-title {
-      font-weight: bold !important;
-      color: #333 !important;
-      padding: 12px 20px 8px !important;
-      border-top: 1px solid #e0e0e0 !important;
-      margin-top: 10px !important;
-      font-size: 14px !important;
-    }
-    
     /* 链接样式 */
     .sidebar-nav li a {
-      color: #495057 !important;
       padding: 8px 15px !important;
       font-size: 14px !important;
-      transition: all 0.3s ease !important;
-      display: block !important;
-      position: relative !important;
+      transition: all 0.3s !important;
     }
     
-    /* 鼠标悬停效果 */
     .sidebar-nav li a:hover {
-      color: #3F51B5 !important;
-      background-color: #e3f2fd !important;
-      padding-left: 20px !important;
+      background-color: #f5f5f5 !important;
     }
     
     /* 当前页面高亮 */
@@ -87,299 +49,47 @@
       border-left: 3px solid #3F51B5 !important;
       padding-left: 17px !important;
     }
-    
-    /* 子菜单缩进 */
-    .sidebar-nav li ul {
-      padding-left: 20px !important;
-    }
-    
-    /* 折叠图标样式 */
-    .sidebar-nav li.has-children > a::before {
-      content: '▼' !important;
-      display: inline-block !important;
-      width: 16px !important;
-      text-align: center !important;
-      margin-right: 4px !important;
-      font-size: 10px !important;
-      transition: transform 0.3s !important;
-      color: #999 !important;
-    }
-    
-    /* 收起状态图标 */
-    .sidebar-nav li.has-children.collapsed > a::before {
-      transform: rotate(-90deg) !important;
-    }
-    
-    /* 折叠图标悬停效果 */
-    .sidebar-nav li.has-children > a:hover::before {
-      color: #3F51B5 !important;
-    }
-    
-    /* ========================================
-       主内容区样式
-    ======================================== */
-    /* 内容区域自适应 */
-    .main {
-      margin-left: 300px !important;
-    }
-    
-    /* 主标题 */
-    .markdown-section h1 {
-      border-bottom: 2px solid #3F51B5 !important;
-      padding-bottom: 10px !important;
-      color: #3F51B5 !important;
-    }
-    
-    /* 代码块样式 */
-    .markdown-section pre {
-      background-color: #2d2d2d !important;
-      border-radius: 4px !important;
-      padding: 15px !important;
-    }
-    
-    .markdown-section code {
-      background-color: #f5f5f5 !important;
-      padding: 2px 6px !important;
-      border-radius: 3px !important;
-      font-size: 0.9em !important;
-    }
-    
-    /* 表格样式 */
-    .markdown-section table {
-      border-collapse: collapse !important;
-      width: 100% !important;
-      margin: 20px 0 !important;
-    }
-    
-    .markdown-section table, 
-    .markdown-section th, 
-    .markdown-section td {
-      border: 1px solid #ddd !important;
-      padding: 12px !important;
-    }
-    
-    .markdown-section th {
-      background-color: #f8f9fa !important;
-      font-weight: bold !important;
-    }
-    
-    /* ========================================
-       顶部导航栏样式
-    ======================================== */
-    .app-nav {
-      background-color: #fff !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    .app-nav li a {
-      color: #333 !important;
-      font-weight: 500 !important;
-    }
-    
-    .app-nav li a:hover,
-    .app-nav li.active a {
-      color: #3F51B5 !important;
-    }
-    
-    /* ========================================
-       滚动条样式
-    ======================================== */
-    .sidebar::-webkit-scrollbar,
-    .content::-webkit-scrollbar {
-      width: 6px !important;
-    }
-    
-    .sidebar::-webkit-scrollbar-thumb,
-    .content::-webkit-scrollbar-thumb {
-      background-color: #ccc !important;
-      border-radius: 3px !important;
-    }
-    
-    .sidebar::-webkit-scrollbar-thumb:hover,
-    .content::-webkit-scrollbar-thumb:hover {
-      background-color: #999 !important;
-    }
-    
-    /* ========================================
-       响应式设计
-    ======================================== */
-    @media screen and (max-width: 768px) {
-      .sidebar {
-        width: 100% !important;
-        min-width: 100% !important;
-      }
-      
-      .main {
-        margin-left: 0 !important;
-      }
-    }
   </style>
 </head>
 <body>
   <div id="app">Loading...</div>
   
-  <!-- ========================================
-       Scripts
-  ======================================== -->
-  
-  <!-- Docsify 核心 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
   
-  <!-- 侧边栏折叠插件 -->
+  <!-- 先加载插件，再配置 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.js"></script>
   
-  <!-- 搜索插件 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
-  
-  <!-- 代码高亮 -->
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
-  
-  <!-- Emoji 支持 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/emoji.min.js"></script>
-  
-  <!-- 图片缩放 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
-  
-  <!-- 复制代码 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
   
-  <!-- ========================================
-       Docsify 配置
-  ======================================== -->
   <script>
     window.$docsify = {
-      // ========================================
-      // 基础配置
-      // ========================================
       name: '📚 我的 Wiki',
-      repo: 'yourusername/yourusername.github.io',
-      homepage: 'README.md',
-      coverpage: false,
+      loadSidebar: true,
+      loadNavbar: true,
+      auto2top: true,
       
-      // ========================================
-      // 导航配置
-      // ========================================
-      loadSidebar: true,              // 启用侧边栏
-      loadNavbar: true,               // 启用顶部导航
-      alias: {
-        '/.*/_sidebar.md': '/_sidebar.md',
-        '/.*/_navbar.md': '/_navbar.md'
-      },
+      // ⭐⭐⭐ 关键：去掉 sidebar 配置，使用插件默认配置
+      // 不要在这里配置 sidebar: {...}
       
-      // ========================================
-      // 侧边栏折叠配置
-      // ========================================
-      sidebar: {
-        displayLevel: 0,              // 始终显示所有层级
-        expandLevel: 1,               // 默认展开到第 1 级
-        auto2top: true                // 点击后滚动到顶部
-      },
+      maxLevel: 4,
+      subMaxLevel: 0,
       
-      // ========================================
-      // 目录配置
-      // ========================================
-      maxLevel: 4,                    // 最大标题层级
-      subMaxLevel: 0,                 // 不自动生成页面内目录（使用全局侧边栏）
-      auto2top: true,                 // 切换页面后自动滚动到顶部
-      
-      // ========================================
-      // 搜索配置
-      // ========================================
       search: {
-        placeholder: '🔍 搜索文档...',
-        noData: '😕 找不到相关文档',
+        placeholder: '🔍 搜索',
+        noData: '😕 找不到结果',
         paths: 'auto',
-        depth: 3,
-        maxAge: 86400000,             // 缓存 24 小时
-        hideOtherSidebarContent: false
+        depth: 3
       },
       
-      // ========================================
-      // Markdown 配置
-      // ========================================
       markdown: {
-        gfm: true,                    // GitHub 风格
-        breaks: true,                 // 单回车换行
-        tables: true,                 // 表格支持
-        tasklists: true,              // 任务列表
-        emoji: true                   // Emoji 支持
-      },
-      
-      // ========================================
-      // 插件配置
-      // ========================================
-      plugins: [
-        // 记住侧边栏展开状态
-        function(hook, vm) {
-          hook.doneEach(function() {
-            // 保存侧边栏状态
-            const sidebar = document.querySelector('.sidebar');
-            if (sidebar) {
-              const items = sidebar.querySelectorAll('.sidebar-nav li.has-children');
-              const state = {};
-              items.forEach((item, index) => {
-                state[index] = item.classList.contains('collapsed');
-              });
-              localStorage.setItem('docsify-sidebar-state', JSON.stringify(state));
-            }
-          });
-          
-          hook.mounted(function() {
-            // 恢复侧边栏状态
-            setTimeout(() => {
-              const sidebar = document.querySelector('.sidebar');
-              if (sidebar) {
-                const items = sidebar.querySelectorAll('.sidebar-nav li.has-children');
-                const savedState = localStorage.getItem('docsify-sidebar-state');
-                if (savedState) {
-                  const state = JSON.parse(savedState);
-                  items.forEach((item, index) => {
-                    if (state[index]) {
-                      item.classList.add('collapsed');
-                    }
-                  });
-                }
-              }
-            }, 100);
-          });
-        },
-        
-        // 在页面顶部添加返回导航
-        function(hook, vm) {
-          hook.beforeEach(function(html) {
-            return '[⇦ 回到全局目录](/)\n\n' + html;
-          });
-        }
-      ],
-      
-      // ========================================
-      // 其他配置
-      // ========================================
-      ga: '',                         // Google Analytics（可选）
-      matomo: null,                   // Matomo 统计（可选）
-      formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',  // 更新时间格式
-      fallbackLanguages: ['zh-cn', 'en'],
-      notFoundPage: '_404.md'         // 404 页面（可选）
+        gfm: true,
+        breaks: true,
+        tables: true,
+        tasklists: true,
+        emoji: true
+      }
     };
   </script>
-  
-  <!-- ========================================
-       统计代码（可选）
-  ======================================== -->
-  <!--
-  <script>
-    // 不蒜子统计
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?your-token";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-  -->
 </body>
 </html>
