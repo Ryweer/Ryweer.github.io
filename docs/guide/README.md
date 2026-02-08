@@ -20,7 +20,6 @@
     <br><b>步骤 1：生成SSH密钥</b>
     <br><code>ssh-keygen -t ed25519 -C "your.email@example.com"</code>
     <br>![](../../assets/images/1.png)
-    <br>
     <br><b>步骤 2：复制公钥</b>
     <br><code>cat ~/.ssh/id_ed25519.pub</code>
     <br>![](../../assets/images/2.png)
