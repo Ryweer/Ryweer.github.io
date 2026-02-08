@@ -20,6 +20,7 @@
     <br><b>步骤 1：生成SSH密钥</b>
     <br><code>ssh-keygen -t ed25519 -C "your.email@example.com"</code>
     <br>![](../../assets/images/1.png)
+    <br>
     <br><b>步骤 2：复制公钥</b>
     <br><code>cat ~/.ssh/id_ed25519.pub</code>
     <br>![](../../assets/images/2.png)
@@ -32,11 +33,11 @@
     <br><b>步骤 4：测试连接</b>
     <br><code>ssh -T git@github.com</code>
     <br>成功提示：<code>Hi username! You've successfully authenticated...</code>
-    <br>![](../../assets/images/4.png)
+    <br>![](../../assets/images/4.png)</br>
     <br><b>步骤 5：使用 SSH 地址推送</b>
     <br><code># 删除旧的 HTTPS 远程地址
-    <br>git remote remove origin
-    <br>\# 添加 SSH 地址（注意是 git@ 而非 https://）
-    <br>git remote add origin git@github.com:yourusername/yourusername.github.io.git
-    <br>\# 推送
-    <br>git push -u origin main</code>
+    git remote remove origin
+    \# 添加 SSH 地址（注意是 git@ 而非 https://）
+    git remote add origin git@github.com:yourusername/yourusername.github.io.git
+    \# 推送
+    git push -u origin main</code>
