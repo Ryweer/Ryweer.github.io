@@ -12,7 +12,6 @@
     <code>git config --global user.email "your.email@example.com" </code>
 
     推荐：设置默认分支名为 main（新版 Git 默认）
-
     <code>git config --global init.defaultBranch main</code>
 
     查看所有配置
@@ -22,7 +21,6 @@
     查看特定配置
 
     <code>git config user.name</code>
-
     <code>git config user.email</code>
     
   - git配置认证
