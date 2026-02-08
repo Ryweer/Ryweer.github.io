@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>📚 我的 Wiki</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css">
   
-  <!-- 引入侧边栏折叠插件 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css">
+  <!-- Docsify 主题 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css">
   
   <style>
     /* 固定侧边栏宽度 */
@@ -34,11 +33,6 @@
     .sidebar-nav li a {
       padding: 8px 15px !important;
       font-size: 14px !important;
-      transition: all 0.3s !important;
-    }
-    
-    .sidebar-nav li a:hover {
-      background-color: #f5f5f5 !important;
     }
     
     /* 当前页面高亮 */
@@ -49,39 +43,55 @@
       border-left: 3px solid #3F51B5 !important;
       padding-left: 17px !important;
     }
+    
+    /* 子菜单缩进 */
+    .sidebar-nav li ul {
+      padding-left: 20px !important;
+    }
   </style>
 </head>
 <body>
   <div id="app">Loading...</div>
   
+  <!-- ========================================
+       Scripts（按正确顺序加载）
+  ======================================== -->
+  
+  <!-- 1. Docsify 核心 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
   
-  <!-- 先加载插件，再配置 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.js"></script>
-  
+  <!-- 2. 搜索插件（必须在配置之前加载） -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  
+  <!-- 3. 代码复制插件 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
   
+  <!-- ========================================
+       Docsify 配置
+  ======================================== -->
   <script>
     window.$docsify = {
       name: '📚 我的 Wiki',
-      loadSidebar: true,
-      loadNavbar: true,
-      auto2top: true,
+      loadSidebar: true,              // 启用侧边栏
+      loadNavbar: true,               // 启用顶部导航
+      auto2top: true,                 // 切换页面后滚动到顶部
       
-      // ⭐⭐⭐ 关键：去掉 sidebar 配置，使用插件默认配置
-      // 不要在这里配置 sidebar: {...}
+      maxLevel: 4,                    // 最大标题层级
+      subMaxLevel: 2,                 // 自动生成页面内目录（2级）
       
-      maxLevel: 4,
-      subMaxLevel: 0,
-      
+      // 搜索配置（关键！）
       search: {
-        placeholder: '🔍 搜索',
-        noData: '😕 找不到结果',
+        placeholder: '🔍 搜索文档...',
+        noData: '😕 找不到相关文档',
         paths: 'auto',
-        depth: 3
+        depth: 3,
+        maxAge: 86400000              // 缓存 24 小时
       },
       
+      // 侧边栏配置
+      sidebarDisplayLevel: 0,         // 0 = 始终显示所有层级
+      
+      // Markdown 配置
       markdown: {
         gfm: true,
         breaks: true,
