@@ -1,5 +1,5 @@
 - [🏠 首页](/)
-- [🚀 WIKI相关](docs/01-快速开始/README.md)
+- [🚀 WIKI相关](docs/guide/README.md)
   - [更新指导](docs/01-快速开始/install.md)
 - [📖 跨境知识库](docs/跨境/)
   - [TEMU](docs/跨境/Temu/平台介绍.md)
