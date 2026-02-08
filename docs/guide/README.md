@@ -1,3 +1,4 @@
+###### [返回上一页](../../README.md)
 # Git使用
   - git安装
   <code>sudo apt install git</code>
@@ -19,6 +20,7 @@
     <b>步骤 1：生成SSH密钥</b>
     <code>ssh-keygen -t ed25519 -C "your.email@example.com"</code>
     ![](../../assets/images/1.png)
+
     <b>步骤 2：复制公钥</b>
     <code>cat ~/.ssh/id_ed25519.pub</code>
     ![](../../assets/images/2.png)
