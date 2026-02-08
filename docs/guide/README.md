@@ -2,19 +2,31 @@
   - git安装
   <code>sudo apt install git</code>
   - git配置
+  
   设置用户名（用于提交记录）
+
     <code>git config --global user.name "Your Name"</code>
+
     设置邮箱（必须与 GitHub 账号邮箱一致）
+
     <code>git config --global user.email "your.email@example.com" </code>
+
     推荐：设置默认分支名为 main（新版 Git 默认）
+
     <code>git config --global init.defaultBranch main</code>
+
     查看所有配置
+
     <code>git config --list</code>
+
     查看特定配置
+
     <code>git config user.name</code>
+
     <code>git config user.email</code>
     
   - git配置认证
+  
     这里推荐使用SSH密钥认证。
 
     <b>步骤 1：生成SSH密钥</b>
@@ -46,7 +58,7 @@
     <code>ssh -T git@github.com</code>
 
     成功提示：<code>Hi username! You've successfully authenticated...</code>
-    
+
     ![](../../assets/images/4.png)
 
     <b>步骤 5：使用 SSH 地址推送</b>
