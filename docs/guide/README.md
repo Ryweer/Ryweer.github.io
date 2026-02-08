@@ -1,7 +1,9 @@
 # Git使用
-  - git安装
+  - <b>git安装</b>
+  
   <code>sudo apt install git</code>
-  - git配置
+
+  - <b>git配置</b>
   
   设置用户名（用于提交记录）
 
@@ -25,7 +27,7 @@
 
     <code>git config user.email</code>
     
-  - git配置认证
+  - <b>git配置认证</b>
   
     这里推荐使用SSH密钥认证。
 
