@@ -1,0 +1,24 @@
+/* 调整侧边栏宽度 */
+.sidebar {
+  width: 300px !important;
+}
+
+/* 添加页脚 */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 14px;
+  border-top: 1px solid #eee;
+  margin-top: 40px;
+}
+
+/* 调整内容区域宽度 */
+.content {
+  max-width: 1000px !important;
+}
+
+/* 自定义封面页样式 */
+section.cover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
