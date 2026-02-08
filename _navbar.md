@@ -1,0 +1,5 @@
+- [🏠 首页](/)
+- [📚 文档](docs/01-快速开始/README.md)
+- [🔧 工具](tools.md)
+- [📧 联系](contact.md)
+- [GitHub](https://github.com/yourusername/yourusername.github.io)
