@@ -8,7 +8,7 @@
   <!-- docsify 样式 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
   
-  <!-- KaTeX 样式（数学公式） -->
+  <!-- ⭐⭐⭐ 必须添加：KaTeX 样式 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   
   <!-- 代码高亮样式 -->
@@ -17,167 +17,51 @@
   <!-- Favicon -->
   <link rel="icon" href="image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
   
-  <!-- ⭐⭐⭐ 优化后的表格样式 -->
+  <!-- 公式美化样式 -->
   <style>
-    /* ========== 表格样式优化 ========== */
+    /* 公式美化 */
+    .katex {
+      font-size: 1.15em !important;
+      color: #333 !important;
+    }
+    .katex-display {
+      margin: 1.8em 0 !important;
+      padding: 12px 0 !important;
+      background: #f8f9fa !important;
+      border-radius: 8px !important;
+      border-left: 3px solid #4CAF50 !important;
+    }
+    .katex-html {
+      padding: 8px 12px !important;
+      border-radius: 4px !important;
+      background-color: #f9f9f9 !important;
+      border: 1px solid #e0e0e0 !important;
+    }
     
-    /* 基础表格样式 */
+    /* 表格样式 */
     table {
       width: 100% !important;
       max-width: 100% !important;
       border-collapse: collapse !important;
       margin: 20px 0 !important;
-      font-size: 14px !important;
-      empty-cells: show !important;
     }
-    
-    /* 表头样式 */
-    th {
-      background-color: #f5f7fa !important;
-      font-weight: 600 !important;
+    th, td {
       padding: 12px 15px !important;
-      text-align: left !important;
       border: 1px solid #e0e0e0 !important;
-      color: #333 !important;
+      word-wrap: break-word !important;
     }
-    
-    /* 表格单元格 */
-    td {
-      padding: 10px 15px !important;
-      border: 1px solid #e0e0e0 !important;
-      vertical-align: top !important;
-      line-height: 1.6 !important;
-    }
-    
-    /* 隔行变色 */
     tbody tr:nth-child(even) {
       background-color: #fafafa !important;
-    }
-    
-    tbody tr:hover {
-      background-color: #f0f4f8 !important;
-    }
-    
-    /* 自动换行 */
-    td, th {
-      word-wrap: break-word !important;
-      word-break: break-word !important;
-      white-space: normal !important;
-    }
-    
-    /* 链接在表格中 */
-    td a, th a {
-      color: #3F51B5 !important;
-      text-decoration: none !important;
-    }
-    
-    td a:hover, th a:hover {
-      text-decoration: underline !important;
-    }
-    
-    /* ========== 表格容器样式 ========== */
-    
-    /* 居中表格容器 */
-    .table-center {
-      text-align: center !important;
-      margin: 30px auto !important;
-      max-width: 900px !important;
-    }
-    
-    .table-center table {
-      margin: 0 auto !important;
-    }
-    
-    /* 带边框的表格容器 */
-    .table-bordered {
-      margin: 30px auto !important;
-      max-width: 900px !important;
-      padding: 20px !important;
-      border: 2px solid #4CAF50 !important;
-      border-radius: 8px !important;
-      background-color: #f9f9f9 !important;
-    }
-    
-    .table-bordered table {
-      margin: 0 !important;
-    }
-    
-    /* 紧凑表格 */
-    .table-compact table {
-      font-size: 13px !important;
-    }
-    
-    .table-compact td, .table-compact th {
-      padding: 8px 12px !important;
-    }
-    
-    /* 宽表格（横向滚动） */
-    .table-wide {
-      overflow-x: auto !important;
-      margin: 20px 0 !important;
-    }
-    
-    .table-wide table {
-      min-width: 800px !important;
-      width: auto !important;
-    }
-    
-    /* ========== 响应式优化 ========== */
-    
-    @media (max-width: 768px) {
-      table {
-        display: block !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-      }
-      
-      th, td {
-        min-width: 120px !important;
-      }
-      
-      /* 移动端表格优化 */
-      .table-responsive {
-        display: block !important;
-        width: 100% !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        margin: 20px 0 !important;
-      }
-    }
-    
-    /* ========== 其他样式 ========== */
-    
-    /* KaTeX 公式优化 */
-    .katex-display {
-      overflow-x: auto !important;
-      padding: 10px 0 !important;
-    }
-    
-    /* 提示区块 */
-    blockquote {
-      border-left: 4px solid #4CAF50 !important;
-      padding: 10px 15px !important;
-      margin: 20px 0 !important;
-      background-color: #f8f9fa !important;
-      color: #555 !important;
-    }
-    
-    /* 页面加载提示 */
-    #app {
-      font-size: 18px !important;
-      color: #666 !important;
-      text-align: center !important;
-      padding: 50px !important;
     }
   </style>
 </head>
 <body>
   <div id="app">🚀 正在加载...</div>
   
-  <!-- docsify 核心 -->
+  <!-- ========== 1. docsify 核心（最先加载） ========== -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   
-  <!-- 配置 -->
+  <!-- ========== 2. 配置（紧随其后） ========== -->
   <script>
     window.$docsify = {
       name: 'RYWEER\'s WIKI',
@@ -191,12 +75,47 @@
       subMaxLevel: 2,
       routerMode: 'hash',
       homepage: 'README.md',
+      
+      // ⭐⭐⭐ 关键配置：必须启用
       executeScript: true,
       
-      // 全局导航/侧边栏
+      // ⭐⭐⭐ 关键配置：全局导航和侧边栏
       alias: {
         '/.*/_navbar.md': '/_navbar.md',
         '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      
+      // ⭐⭐⭐ 关键配置：KaTeX 完整配置
+      katex: {
+        // 必须启用自动渲染
+        autoRender: true,
+        
+        // 正确的公式分隔符
+        inlineMath: [
+          ['$', '$'],        // 行内公式
+          ['\\(', '\\)']     // 兼容括号语法
+        ],
+        displayMath: [
+          ['$$', '$$'],      // 块级公式
+          ['\\[', '\\]']     // 兼容方括号语法
+        ],
+        
+        // 必须忽略代码块
+        ignoredTags: [
+          'script', 'noscript', 'style', 'textarea', 
+          'pre', 'code', 'a', 'img'  // 新增 a 和 img
+        ],
+        
+        // 关键：禁用转义（解决公式显示问题）
+        escape: false,
+        
+        // 安全设置
+        trust: false,
+        macros: {
+          "\\RR": "\\mathbb{R}",
+          "\\NN": "\\mathbb{N}",
+          "\\ZZ": "\\mathbb{Z}"
+        }
       },
       
       search: {
@@ -213,25 +132,44 @@
         successText: '✅ 已复制'
       }
     };
+    
+    // ⭐⭐⭐ 关键：手动添加渲染钩子（双重保障）
+    window.$docsify.plugins = [
+      function(hook, vm) {
+        hook.doneEach(function() {
+          // 手动触发公式渲染
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(document.body, {
+              delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\[', right: '\\]', display: true},
+                {left: '\\(', right: '\\)', display: false}
+              ],
+              ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+              trust: false
+            });
+          }
+        });
+      }
+    ];
   </script>
   
-  <!-- KaTeX -->
+  <!-- ========== 3. KaTeX 核心 ========== -->
   <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  
+  <!-- ========== 4. auto-render（必须） ========== -->
   <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  
+  <!-- ========== 5. docsify-katex 插件（必须最后加载） ========== -->
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@1.1.2/dist/docsify-katex.min.js"></script>
   
-  <!-- 代码高亮 -->
+  <!-- ========== 6. 代码高亮 ========== -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/prism.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-css.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
   
-  <!-- 插件 -->
+  <!-- ========== 7. 其他插件 ========== -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
