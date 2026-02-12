@@ -3,103 +3,237 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📚 我的 Wiki</title>
+  <title>RYWEER's WIKI</title>
   
-  <!-- Docsify 主题 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/themes/vue.css">
+  <!-- docsify 样式 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
   
+  <!-- KaTeX 样式（数学公式） -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  
+  <!-- 代码高亮样式 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+  
+  <!-- ⭐⭐⭐ 优化后的表格样式 -->
   <style>
-    /* 固定侧边栏宽度 */
-    .sidebar {
-      width: 300px !important;
-      min-width: 300px !important;
-    }
+    /* ========== 表格样式优化 ========== */
     
-    .main {
-      margin-left: 300px !important;
-    }
-    
-    /* 侧边栏标题 */
-    .sidebar > h1 {
-      padding: 20px !important;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-      color: white !important;
-      text-align: center !important;
-      font-size: 18px !important;
-      font-weight: bold !important;
-    }
-    
-    /* 链接样式 */
-    .sidebar-nav li a {
-      padding: 8px 15px !important;
+    /* 基础表格样式 */
+    table {
+      width: 100% !important;
+      max-width: 100% !important;
+      border-collapse: collapse !important;
+      margin: 20px 0 !important;
       font-size: 14px !important;
+      empty-cells: show !important;
     }
     
-    /* 当前页面高亮 */
-    .sidebar-nav li.active > a {
+    /* 表头样式 */
+    th {
+      background-color: #f5f7fa !important;
+      font-weight: 600 !important;
+      padding: 12px 15px !important;
+      text-align: left !important;
+      border: 1px solid #e0e0e0 !important;
+      color: #333 !important;
+    }
+    
+    /* 表格单元格 */
+    td {
+      padding: 10px 15px !important;
+      border: 1px solid #e0e0e0 !important;
+      vertical-align: top !important;
+      line-height: 1.6 !important;
+    }
+    
+    /* 隔行变色 */
+    tbody tr:nth-child(even) {
+      background-color: #fafafa !important;
+    }
+    
+    tbody tr:hover {
+      background-color: #f0f4f8 !important;
+    }
+    
+    /* 自动换行 */
+    td, th {
+      word-wrap: break-word !important;
+      word-break: break-word !important;
+      white-space: normal !important;
+    }
+    
+    /* 链接在表格中 */
+    td a, th a {
       color: #3F51B5 !important;
-      font-weight: bold !important;
-      background-color: #e8eaf6 !important;
-      border-left: 3px solid #3F51B5 !important;
-      padding-left: 17px !important;
+      text-decoration: none !important;
     }
     
-    /* 子菜单缩进 */
-    .sidebar-nav li ul {
-      padding-left: 20px !important;
+    td a:hover, th a:hover {
+      text-decoration: underline !important;
+    }
+    
+    /* ========== 表格容器样式 ========== */
+    
+    /* 居中表格容器 */
+    .table-center {
+      text-align: center !important;
+      margin: 30px auto !important;
+      max-width: 900px !important;
+    }
+    
+    .table-center table {
+      margin: 0 auto !important;
+    }
+    
+    /* 带边框的表格容器 */
+    .table-bordered {
+      margin: 30px auto !important;
+      max-width: 900px !important;
+      padding: 20px !important;
+      border: 2px solid #4CAF50 !important;
+      border-radius: 8px !important;
+      background-color: #f9f9f9 !important;
+    }
+    
+    .table-bordered table {
+      margin: 0 !important;
+    }
+    
+    /* 紧凑表格 */
+    .table-compact table {
+      font-size: 13px !important;
+    }
+    
+    .table-compact td, .table-compact th {
+      padding: 8px 12px !important;
+    }
+    
+    /* 宽表格（横向滚动） */
+    .table-wide {
+      overflow-x: auto !important;
+      margin: 20px 0 !important;
+    }
+    
+    .table-wide table {
+      min-width: 800px !important;
+      width: auto !important;
+    }
+    
+    /* ========== 响应式优化 ========== */
+    
+    @media (max-width: 768px) {
+      table {
+        display: block !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      
+      th, td {
+        min-width: 120px !important;
+      }
+      
+      /* 移动端表格优化 */
+      .table-responsive {
+        display: block !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        margin: 20px 0 !important;
+      }
+    }
+    
+    /* ========== 其他样式 ========== */
+    
+    /* KaTeX 公式优化 */
+    .katex-display {
+      overflow-x: auto !important;
+      padding: 10px 0 !important;
+    }
+    
+    /* 提示区块 */
+    blockquote {
+      border-left: 4px solid #4CAF50 !important;
+      padding: 10px 15px !important;
+      margin: 20px 0 !important;
+      background-color: #f8f9fa !important;
+      color: #555 !important;
+    }
+    
+    /* 页面加载提示 */
+    #app {
+      font-size: 18px !important;
+      color: #666 !important;
+      text-align: center !important;
+      padding: 50px !important;
     }
   </style>
 </head>
 <body>
-  <div id="app">Loading...</div>
+  <div id="app">🚀 正在加载...</div>
   
-  <!-- ========================================
-       Scripts（按正确顺序加载）
-  ======================================== -->
+  <!-- docsify 核心 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   
-  <!-- 1. Docsify 核心 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
-  
-  <!-- 2. 搜索插件（必须在配置之前加载） -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
-  
-  <!-- 3. 代码复制插件 -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2"></script>
-  
-  <!-- ========================================
-       Docsify 配置
-  ======================================== -->
+  <!-- 配置 -->
   <script>
     window.$docsify = {
-      name: '📚 我的 Wiki',
-      loadSidebar: true,              // 启用侧边栏
-      loadNavbar: true,               // 启用顶部导航
-      auto2top: true,                 // 切换页面后滚动到顶部
+      name: 'RYWEER\'s WIKI',
+      repo: 'https://github.com/你的用户名/你的仓库',
+      loadNavbar: true,
+      loadSidebar: true,
+      coverpage: true,
+      themeColor: '#3F51B5',
+      auto2top: true,
+      maxLevel: 4,
+      subMaxLevel: 2,
+      routerMode: 'hash',
+      homepage: 'README.md',
+      executeScript: true,
       
-      maxLevel: 4,                    // 最大标题层级
-      subMaxLevel: 2,                 // 自动生成页面内目录（2级）
-      
-      // 搜索配置（关键！）
-      search: {
-        placeholder: '🔍 搜索文档...',
-        noData: '😕 找不到相关文档',
-        paths: 'auto',
-        depth: 3,
-        maxAge: 86400000              // 缓存 24 小时
+      // 全局导航/侧边栏
+      alias: {
+        '/.*/_navbar.md': '/_navbar.md',
+        '/.*/_sidebar.md': '/_sidebar.md'
       },
       
-      // 侧边栏配置
-      sidebarDisplayLevel: 0,         // 0 = 始终显示所有层级
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '🔍 搜索文档...',
+        noData: '😔 找不到相关结果',
+        depth: 3
+      },
       
-      // Markdown 配置
-      markdown: {
-        gfm: true,
-        breaks: true,
-        tables: true,
-        tasklists: true,
-        emoji: true
+      copyCode: {
+        buttonText: '📋 复制',
+        errorText: '❌ 复制失败',
+        successText: '✅ 已复制'
       }
     };
   </script>
+  
+  <!-- KaTeX -->
+  <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@1.1.2/dist/docsify-katex.min.js"></script>
+  
+  <!-- 代码高亮 -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/prism.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-css.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+  
+  <!-- 插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
 </body>
 </html>
