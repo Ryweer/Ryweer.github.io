@@ -1,5 +1,5 @@
 - [🏠 首页](/)
 - [**🚀 WIKI相关**](docs/guide/)
 - **📖 跨境知识库**
-  - [TEMU](docs/跨境/Temu/README.md)
+  - [TEMU全托管](docs/跨境/Temu/README_GLOBAL.md)
   - [Mercado](docs/跨境/Mercado/README.md)
