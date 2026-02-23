@@ -8,8 +8,11 @@
   <!-- docsify 样式 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
   
-  <!-- ⭐⭐⭐ 必须添加：KaTeX 样式 -->
+  <!-- KaTeX 样式 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  
+  <!-- ⭐ Mermaid 样式 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.css">
   
   <!-- 代码高亮样式 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.css">
@@ -36,6 +39,20 @@
       border-radius: 4px !important;
       background-color: #f9f9f9 !important;
       border: 1px solid #e0e0e0 !important;
+    }
+    
+    /* ⭐ Mermaid 流程图样式 */
+    .mermaid {
+      text-align: center;
+      margin: 30px 0;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .mermaid svg {
+      max-width: 100%;
+      height: auto;
     }
     
     /* 表格样式 */
@@ -76,40 +93,30 @@
       routerMode: 'hash',
       homepage: 'README.md',
       
-      // ⭐⭐⭐ 关键配置：必须启用
       executeScript: true,
       
-      // ⭐⭐⭐ 关键配置：全局导航和侧边栏
       alias: {
         '/.*/_navbar.md': '/_navbar.md',
         '/.*/_sidebar.md': '/_sidebar.md'
       },
       
-      // ⭐⭐⭐ 关键配置：KaTeX 完整配置
+      // ⭐ Mermaid 配置
+      mermaid: {
+        theme: 'default',
+        options: {
+          startOnLoad: true,
+          flowchart: { useMaxWidth: true },
+          securityLevel: 'loose'
+        }
+      },
+      
+      // KaTeX 配置（保持原样）
       katex: {
-        // 必须启用自动渲染
         autoRender: true,
-        
-        // 正确的公式分隔符
-        inlineMath: [
-          ['$', '$'],        // 行内公式
-          ['\\(', '\\)']     // 兼容括号语法
-        ],
-        displayMath: [
-          ['$$', '$$'],      // 块级公式
-          ['\\[', '\\]']     // 兼容方括号语法
-        ],
-        
-        // 必须忽略代码块
-        ignoredTags: [
-          'script', 'noscript', 'style', 'textarea', 
-          'pre', 'code', 'a', 'img'  // 新增 a 和 img
-        ],
-        
-        // 关键：禁用转义（解决公式显示问题）
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'a', 'img'],
         escape: false,
-        
-        // 安全设置
         trust: false,
         macros: {
           "\\RR": "\\mathbb{R}",
@@ -133,11 +140,10 @@
       }
     };
     
-    // ⭐⭐⭐ 关键：手动添加渲染钩子（双重保障）
+    // KaTeX 渲染钩子（保持原样）
     window.$docsify.plugins = [
       function(hook, vm) {
         hook.doneEach(function() {
-          // 手动触发公式渲染
           if (typeof renderMathInElement === 'function') {
             renderMathInElement(document.body, {
               delimiters: [
@@ -161,15 +167,18 @@
   <!-- ========== 4. auto-render（必须） ========== -->
   <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
   
-  <!-- ========== 5. docsify-katex 插件（必须最后加载） ========== -->
+  <!-- ========== 5. docsify-katex 插件 ========== -->
   <script src="//cdn.jsdelivr.net/npm/docsify-katex@1.1.2/dist/docsify-katex.min.js"></script>
   
-  <!-- ========== 6. 代码高亮 ========== -->
+  <!-- ⭐ 6. docsify-mermaid 插件（新增） ========== -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.min.js"></script>
+  
+  <!-- ========== 7. 代码高亮 ========== -->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/prism.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
   
-  <!-- ========== 7. 其他插件 ========== -->
+  <!-- ========== 8. 其他插件 ========== -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
