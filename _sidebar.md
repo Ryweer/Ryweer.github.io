@@ -3,3 +3,5 @@
 - **📖 跨境知识库**
   - [TEMU全托管](docs/跨境/Temu/README_GLOBAL.md)
   - [Mercado](docs/跨境/Mercado/README.md)
+- **投资理财**
+  - [私域投资咨询服务](docs/投资理财/README.md)
