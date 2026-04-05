@@ -5,3 +5,11 @@
   - [Mercado](docs/跨境/Mercado/README.md)
 - **投资理财**
   - [私域投资咨询服务](docs/投资理财/README.md)
+- **WorldQuantBrain**
+  - [基础知识](docs/WorldQuantBrain/基础知识/)
+    - [Settings（设置面板）知识点详解.md](/docs/WorldQuantBrain/基础知识/Settings（设置面板）知识点详解.md)
+    - [WorldQuant BRAIN 平台模拟运行机制详解](docs/WorldQuantBrain/基础知识/WorldQuant%20BRAIN%20平台模拟运行机制详解.md)
+    - [核心指标详解](docs/WorldQuantBrain/基础知识/核心指标详解.md)
+    - [算子详解](docs/WorldQuantBrain/基础知识/算子详解.md)
+    - [常用数据表](docs/WorldQuantBrain/基础知识/常用数据附表.md)
+    
