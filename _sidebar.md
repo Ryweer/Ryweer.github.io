@@ -12,4 +12,6 @@
     - [核心指标详解](docs/WorldQuantBrain/基础知识/核心指标详解.md)
     - [算子详解](docs/WorldQuantBrain/基础知识/算子详解.md)
     - [常用数据表](docs/WorldQuantBrain/基础知识/常用数据附表.md)
+    - [平台数据集详解](/docs/WorldQuantBrain/基础知识/WORLDQUANT_BRAIN_DATASETS_CN.md)
+    - [BRAIN字段分析与价值评估](/docs/WorldQuantBrain/基础知识/BRAIN字段分析与价值评估.md)
     
