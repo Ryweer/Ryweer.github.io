@@ -13,4 +13,4 @@
     - [常用数据表](docs/WorldQuantBrain/基础知识/常用数据附表.md)
     - [数据字段与数据集详解](docs/WorldQuantBrain/基础知识/数据字段与数据集详解.md)
     - [字段组合价值详解](/docs/WorldQuantBrain/基础知识/字段组合价值详解.md)
-    
+    - [BRAIN数据集字段参考手册](/docs/WorldQuantBrain/基础知识/BRAIN数据集字段参考手册_中文版.md)
