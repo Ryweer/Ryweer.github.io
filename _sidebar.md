@@ -7,11 +7,10 @@
   - [私域投资咨询服务](docs/投资理财/README.md)
 - **WorldQuantBrain**
   - [基础知识](docs/WorldQuantBrain/基础知识/)
-    - [Settings（设置面板）知识点详解.md](/docs/WorldQuantBrain/基础知识/Settings（设置面板）知识点详解.md)
+    - [平台配置与指标详解](docs/WorldQuantBrain/基础知识/平台配置与指标详解.md)
     - [WorldQuant BRAIN 平台模拟运行机制详解](docs/WorldQuantBrain/基础知识/WorldQuant%20BRAIN%20平台模拟运行机制详解.md)
-    - [核心指标详解](docs/WorldQuantBrain/基础知识/核心指标详解.md)
     - [算子详解](docs/WorldQuantBrain/基础知识/算子详解.md)
     - [常用数据表](docs/WorldQuantBrain/基础知识/常用数据附表.md)
-    - [平台数据集详解](/docs/WorldQuantBrain/基础知识/WORLDQUANT_BRAIN_DATASETS_CN.md)
-    - [BRAIN字段分析与价值评估](/docs/WorldQuantBrain/基础知识/BRAIN字段分析与价值评估.md)
+    - [数据字段与数据集详解](docs/WorldQuantBrain/基础知识/数据字段与数据集详解.md)
+    - [字段组合价值详解](/docs/WorldQuantBrain/基础知识/字段组合价值详解.md)
     
