@@ -5,6 +5,7 @@
   - [Mercado](docs/跨境/Mercado/README.md)
 - **投资理财**
   - [私域投资咨询服务](docs/投资理财/README.md)
+  - [交易日志（A股）](docs/投资理财/交易日志(A股)/README.md)
 - **WorldQuantBrain**
   - [基础知识](docs/WorldQuantBrain/基础知识/)
     - [平台配置与指标详解](docs/WorldQuantBrain/基础知识/平台配置与指标详解.md)
@@ -14,3 +15,7 @@
     - [数据字段与数据集详解](docs/WorldQuantBrain/基础知识/数据字段与数据集详解.md)
     - [字段组合价值详解](/docs/WorldQuantBrain/基础知识/字段组合价值详解.md)
     - [BRAIN数据集字段参考手册](/docs/WorldQuantBrain/基础知识/BRAIN数据集字段参考手册_中文版.md)
+- **交易员学习资料**
+    - [第一阶段知识点](/docs/交易员学习资料/第一阶段知识点.md)
+    - [交易日志](/docs/交易员学习资料/交易日记/)
+    - [交易策略](/docs/交易员学习资料/交易策略.md)

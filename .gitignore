@@ -1,0 +1,30 @@
+﻿# Node
+node_modules/
+
+# Jekyll / static site
+_site/
+._site/
+.jekyll-cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Logs
+*.log
+
+# Temp
+tmp/
+dist/
